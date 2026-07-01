@@ -1,0 +1,309 @@
+
+==================== EIGRP running-config ====================
+router eigrp REDLAB
+ !
+ address-family ipv4 unicast autonomous-system 100
+  !
+  af-interface GigabitEthernet1
+   passive-interface
+  exit-af-interface
+  !
+  topology base
+  exit-af-topology
+  network 192.168.56.0
+ exit-address-family
+ !
+ address-family ipv6 unicast autonomous-system 100
+  !
+  af-interface GigabitEthernet1
+   passive-interface
+  exit-af-interface
+  !
+  topology base
+  exit-af-topology
+ exit-address-family
+
+==================== Interfaces IPv4 ====================
+Interface              IP-Address      OK? Method Status                Protocol
+GigabitEthernet1       192.168.56.107  YES DHCP   up                    up      
+
+==================== Interfaces IPv6 ====================
+GigabitEthernet1       [up/up]
+    unassigned
+
+==================== Running config completa ====================
+Building configuration...
+
+Current configuration : 4470 bytes
+!
+! Last configuration change at 15:16:36 UTC Wed Jul 1 2026 by cisco
+!
+version 16.9
+service timestamps debug datetime msec
+service timestamps log datetime msec
+platform qfp utilization monitor load 80
+no platform punt-keepalive disable-kernel-core
+platform console virtual
+!
+hostname CSR1kv
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+!
+!
+!
+!
+!
+!
+!
+ip domain name etw.netacad.com
+!
+!
+!
+login on-success log
+!
+!
+!
+!
+!
+!
+!
+subscriber templating
+! 
+! 
+! 
+! 
+!
+ipv6 unicast-routing
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-1697307243
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-1697307243
+ revocation-check none
+ rsakeypair TP-self-signed-1697307243
+!
+!
+crypto pki certificate chain TP-self-signed-1697307243
+ certificate self-signed 01
+  30820330 30820218 A0030201 02020101 300D0609 2A864886 F70D0101 05050030 
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 31363937 33303732 3433301E 170D3236 30373031 31353034 
+  30395A17 0D333030 31303130 30303030 305A3031 312F302D 06035504 03132649 
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D31 36393733 
+  30373234 33308201 22300D06 092A8648 86F70D01 01010500 0382010F 00308201 
+  0A028201 01008A8F 807A4809 957730C2 2A164DCE B8AC9EFD 960B5D86 46F024C0 
+  921AE508 07BE4372 743B5824 1510FF05 B683FBC1 AAF942B1 0D363193 CB433CFC 
+  698D010D 74C263FF 940B18BB 784F23AF 35514388 C558A93D C74462DB DB2FCADD 
+  C766754C 8AECF462 62829CA8 C34C959B 4AC89286 685F988E 0175DB1F 7EE0E7C4 
+  1FBBA250 032AB122 01CE5A6B 261CF259 40C58B21 FEDF161D 318E53CB 5A60CC41 
+  4E59F05A 06FB5CD1 8DADE01F E6DA1EB4 2FA3230B 9EDDC01F 2EDCEFBB C7E89C8E 
+  82F11469 FEAB8149 C90526C7 9965523A 8C077981 1E9FC91F DCD028F1 43C4AC71 
+  3BD8234D B5EF520A C3580FA0 BE112593 164871BB 9FDC276F 4B5A37F6 408AA5A0 
+  12B5892F F9490203 010001A3 53305130 0F060355 1D130101 FF040530 030101FF 
+  301F0603 551D2304 18301680 14B3AD63 E6584450 9183E6D1 58DF7280 B913B1D8 
+  D2301D06 03551D0E 04160414 B3AD63E6 58445091 83E6D158 DF7280B9 13B1D8D2 
+  300D0609 2A864886 F70D0101 05050003 82010100 3237EAD7 E43C6AA8 D7712F4F 
+  889E2E4B A50D4F24 08FA3865 070ECD30 489B6ECE A6CC06C7 59764F4A 695EB79D 
+  A2B2BDB9 C8CC0FE9 1C39434B 25C0A81E 6892BE35 87BE7A89 AEB6F1B1 60BC184D 
+  A2F357DE D5B371B3 4D8BF843 FDE38EFA B07FB95D A5387F3A 137700FE 5B5321AC 
+  8A08D1CD 0C9822F5 8CAD6D32 0ED18458 FEFE272B CC21FB85 C83852D9 90A2A7AD 
+  38855A60 690BE7CD 56578BA6 62F2781A 6B09C605 669497D6 F3338908 31C5F04A 
+  9AB750E2 01D72998 D437A455 87618E3A BAE91516 89C9BB34 2790AF5B CEA50A00 
+  5E55118A 98EC16CF F8DC4F36 F4D97E36 0ECD4416 CD927961 9DF31793 7F96B6A2 
+  B1446AE0 008004B4 4417A423 B97455DC 3E2FD33E
+  	quit
+!
+!
+!
+!
+!
+!
+!
+!
+license udi pid CSR1000V sn 9ANX76Z2JX5
+no license smart enable
+diagnostic bootup level minimal
+!
+spanning-tree extend system-id
+!
+netconf-yang
+!
+restconf
+!
+username cisco privilege 15 password 0 cisco123!
+!
+redundancy
+!
+!
+!
+!
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+! 
+! 
+!
+!
+interface GigabitEthernet1
+ description VBox
+ ip address dhcp
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+!
+router eigrp REDLAB
+ !
+ address-family ipv4 unicast autonomous-system 100
+  !
+  af-interface GigabitEthernet1
+   passive-interface
+  exit-af-interface
+  !
+  topology base
+  exit-af-topology
+  network 192.168.56.0
+ exit-address-family
+ !
+ address-family ipv6 unicast autonomous-system 100
+  !
+  af-interface GigabitEthernet1
+   passive-interface
+  exit-af-interface
+  !
+  topology base
+  exit-af-topology
+ exit-address-family
+!
+ip forward-protocol nd
+no ip http server
+ip http authentication local
+ip http secure-server
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+banner motd ^C
+*                                           *
+**                                         **
+***                                       ***
+***  Cisco Networking Academy             ***
+***   Emerging Technologies Workshop:     ***
+***    Model Driven Programmability       ***
+***                                       ***
+***  This software is provided for        ***
+***   Educational Purposes                ***
+***    Only in Networking Academies       ***
+***                                       ***
+**                                         **
+*                                           *
+^C
+!
+line con 0
+ logging synchronous
+ stopbits 1
+line vty 0 4
+ login local
+ transport input ssh
+line vty 5 15
+ login local
+ transport input ssh
+!
+!
+!
+!
+!
+!
+end
+
+
+==================== Version ====================
+Cisco IOS XE Software, Version 16.09.05
+Cisco IOS Software [Fuji], Virtual XE Software (X86_64_LINUX_IOSD-UNIVERSALK9-M), Version 16.9.5, RELEASE SOFTWARE (fc1)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2020 by Cisco Systems, Inc.
+Compiled Thu 30-Jan-20 18:48 by mcpre
+
+
+Cisco IOS-XE software, Copyright (c) 2005-2020 by cisco Systems, Inc.
+All rights reserved.  Certain components of Cisco IOS-XE software are
+licensed under the GNU General Public License ("GPL") Version 2.0.  The
+software code licensed under GPL Version 2.0 is free software that comes
+with ABSOLUTELY NO WARRANTY.  You can redistribute and/or modify such
+GPL code under the terms of GPL Version 2.0.  For more details, see the
+documentation or "License Notice" file accompanying the IOS-XE software,
+or the applicable URL provided on the flyer accompanying the IOS-XE
+software.
+
+
+ROM: IOS-XE ROMMON
+
+CSR1kv uptime is 13 minutes
+Uptime for this control processor is 17 minutes
+System returned to ROM by reload
+System image file is "cdrom0:packages.conf"
+Last reload reason: reload
+
+
+
+This product contains cryptographic features and is subject to United
+States and local country laws governing import, export, transfer and
+use. Delivery of Cisco cryptographic products does not imply
+third-party authority to import, export, distribute or use encryption.
+Importers, exporters, distributors and users are responsible for
+compliance with U.S. and local country laws. By using this product you
+agree to comply with applicable laws and regulations. If you are unable
+to comply with U.S. and local laws, return this product immediately.
+
+A summary of U.S. laws governing Cisco cryptographic products may be found at:
+http://www.cisco.com/wwl/export/crypto/tool/stqrg.html
+
+If you require further assistance please contact us by sending email to
+export@cisco.com.
+
+License Level: ax
+License Type: Default. No valid license found.
+Next reload license Level: ax
+
+
+Smart Licensing Status: Smart Licensing is DISABLED
+
+cisco CSR1000V (VXE) processor (revision VXE) with 2182252K/3075K bytes of memory.
+Processor board ID 9ANX76Z2JX5
+1 Gigabit Ethernet interface
+32768K bytes of non-volatile configuration memory.
+3984900K bytes of physical memory.
+7774207K bytes of virtual hard disk at bootflash:.
+0K bytes of WebUI ODM Files at webui:.
+
+Configuration register is 0x2102
+
