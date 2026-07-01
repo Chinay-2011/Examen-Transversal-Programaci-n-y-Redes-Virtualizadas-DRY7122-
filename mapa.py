@@ -1,26 +1,4 @@
 #!/usr/bin/env python3
-"""
-distancia_chile_argentina_graphhopper.py
-
-Script interactivo que usa la API de GraphHopper (Geocoding + Routing) para
-calcular la distancia (km y millas) y la duración estimada de un viaje entre
-una ciudad de Chile y una ciudad de Argentina, según el medio de transporte
-elegido. Además, genera un mapa interactivo (estilo Google Maps) con la ruta
-dibujada y las indicaciones paso a paso, que se abre automáticamente en el
-navegador.
-
-Requiere:
-  - Librerías: requests, folium
-        pip install requests folium
-  - Una API Key gratuita de GraphHopper:
-      1. Crear cuenta en https://www.graphhopper.com/
-      2. Generar una API Key en el dashboard (plan gratuito: ~2500 créditos/día)
-      3. Definir la variable de entorno GRAPHHOPPER_API_KEY, por ejemplo:
-             export GRAPHHOPPER_API_KEY="tu_api_key_aqui"
-         o bien ingresarla cuando el script la solicite.
-
-Escribir 's' en cualquier solicitud para salir del programa.
-"""
 
 import math
 import os
@@ -58,7 +36,7 @@ def salir(texto: str) -> bool:
 
 def obtener_api_key() -> str:
     """Obtiene la API Key de GraphHopper desde variable de entorno o input."""
-    api_key = os.environ.get("GRAPHHOPPER_API_KEY", "").strip()
+    api_key = os.environ.get("GRAPHHOPPER_API_KEY", "9509a6cc-6f7b-4428-a53a-b16309c24f55").strip()
     if api_key:
         return api_key
 
