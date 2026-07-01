@@ -12,7 +12,7 @@ config_xml = """
 <config>
   <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
     
-    <hostname>Chery-Gatica-Nunez</hostname>
+    <hostname>Chery-Gatica</hostname>
     
     <interface>
       <Loopback>
