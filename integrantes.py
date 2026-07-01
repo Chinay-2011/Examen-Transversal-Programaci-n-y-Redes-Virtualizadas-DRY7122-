@@ -2,7 +2,7 @@
 integrantes = [
     "Shneider Chery",
     "Francisco Gatica",
-    "Leonardo Núñez"
+   
 ]
 
 print("====================================")
