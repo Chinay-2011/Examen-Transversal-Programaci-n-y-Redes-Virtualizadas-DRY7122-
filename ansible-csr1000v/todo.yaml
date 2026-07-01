@@ -1,0 +1,47 @@
+---
+- name: Configuraciones Completas para Cisco IOS (CSR1kv)
+  hosts: routers
+  gather_facts: false
+  vars:
+    # Incrementa el tiempo de espera a 60 segundos para evitar que la VM del router se cuelgue
+    ansible_command_timeout: 60
+
+  tasks:
+    # --- TAREA 1: CONFIGURACIÓN DE LOOPBACK 33 ---
+    - name: Asignar IPv6 Global y Link-Local a Loopback 33
+      ios_config:
+        lines:
+          - ipv6 address 3001:ABCD:ABCD:1::1/128
+          - ipv6 address FE80::1 link-local
+        parents: interface Loopback33
+        save_when: changed
+
+    # --- TAREA 2: RESPALDO DE RUNNING-CONFIG ---
+    - name: Asegurar que el directorio de respaldos exista localmente
+      ansible.builtin.file:
+        path: "./backups"
+        state: directory
+        mode: '0755'
+      delegate_to: localhost  # OBLIGATORIO: Fuerza a que se cree en la máquina de control
+
+    - name: Obtener el running-config del CSR1kv
+      ios_command:
+        commands:
+          - show running-config
+      register: config
+
+    - name: Guardar la salida en la carpeta local ./backups/
+      ansible.builtin.copy:
+        content: "{{ config.stdout[0] }}"
+        dest: "./backups/show_run_{{ inventory_hostname }}.txt"
+      delegate_to: localhost  # OBLIGATORIO: Guarda el archivo .txt en la máquina de control
+
+    # --- TAREA 3: SERVICIO WEB NATIVO (PUERTO 9999) ---
+    - name: Habilitar servidor HTTP y cambiar el puerto a 9999 en el CSR1kv
+      ios_config:
+        lines:
+          - ip http server
+          - ip http secure-server
+          - ip http port 9999
+          - ip http secure-port 9999
+        save_when: changed
